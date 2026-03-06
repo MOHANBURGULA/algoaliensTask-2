@@ -2,16 +2,32 @@ import Link from "next/link"
 
 export default function PublicNavbar() {
   return (
-    <nav className="flex justify-between items-center px-10 py-6">
+    <nav className="w-full border-b border-purple-900/30 backdrop-blur-sm">
 
-      <h1 className="font-bold text-lg">
-        AlgoAliens
-      </h1>
+      <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
 
-      <div className="flex gap-6 text-sm text-gray-300">
-        <Link href="/">Home</Link>
-        <Link href="/courses">Courses</Link>
-        <Link href="/signup">Signup</Link>
+        {/* Logo */}
+        <Link href="/" className="text-xl font-bold">
+          AlgoAliens
+        </Link>
+
+        {/* Navigation */}
+        <div className="flex items-center gap-8 text-sm text-gray-300">
+
+          <Link href="/" className="hover:text-white">
+            Home
+          </Link>
+
+          <Link href="/courses" className="hover:text-white">
+            Courses
+          </Link>
+
+          <Link href="/signup" className="hover:text-white">
+            Signup
+          </Link>
+
+        </div>
+
       </div>
 
     </nav>
