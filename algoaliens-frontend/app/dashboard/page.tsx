@@ -1,5 +1,8 @@
 "use client"
 
+import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
+
 import {
   BookOpen,
   Code2,
@@ -20,8 +23,26 @@ import {
   PolarAngleAxis
 } from "recharts"
 
-
 export default function DashboardPage() {
+
+  const router = useRouter()
+  const [checking, setChecking] = useState(true)
+
+  useEffect(() => {
+
+    const completed = localStorage.getItem("profileSetup")
+
+    if (!completed) {
+      router.push("/profile-setup")
+    } else {
+      setChecking(false)
+    }
+
+  }, [])
+
+  if (checking) {
+    return null
+  }
 
   const weeklyData = [
     { day: "Mon", progress: 2 },
@@ -199,7 +220,6 @@ export default function DashboardPage() {
             </div>
           </div>
 
-
           <div>
             <p className="text-sm mb-2">
               Python for DSA
@@ -209,7 +229,6 @@ export default function DashboardPage() {
               <div className="h-2 bg-cyan-400 rounded-full w-[45%]"></div>
             </div>
           </div>
-
 
           <div>
             <p className="text-sm mb-2">

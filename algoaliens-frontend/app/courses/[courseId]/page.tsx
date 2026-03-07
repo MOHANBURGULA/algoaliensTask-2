@@ -118,228 +118,228 @@ export default function CoursePage() {
             </div>
 
 
-{/* MODULE CONTENT */}
+            {/* MODULE CONTENT */}
 
-{openModule === module.id && (
+            {openModule === module.id && (
 
-<div className="space-y-4 mt-5">
-
-
-{/* FINAL MODULE */}
-
-{module.id === "6" ? (
-
-<>
-
-{/* MCQ TEST */}
-
-<div className="flex justify-between items-center bg-[#0a0318] p-4 rounded-xl border border-purple-700/20">
-
-<div className="flex items-center gap-3">
-<Book size={16} className="text-purple-400"/>
-<span className="font-medium">Final MCQ Test</span>
-</div>
-
-<Link href={`/courses/${course.id}/mcq`}>
-
-<button className="px-4 py-1 text-xs rounded-md bg-gradient-to-r from-purple-500 to-cyan-400 hover:opacity-90 transition">
-Start Test
-</button>
-
-</Link>
-
-</div>
+              <div className="space-y-4 mt-5">
 
 
+                {/* FINAL MODULE */}
 
-{/* PROJECT SUBMISSION */}
+                {module.id === "6" ? (
 
-<div className="bg-[#0a0318] p-4 rounded-xl border border-purple-700/20">
+                  <>
 
-<div className="flex justify-between items-center">
+                    {/* MCQ TEST */}
 
-<div className="flex items-center gap-3">
-<Code2 size={16} className="text-purple-400"/>
-<span className="font-medium">Submit Project (ZIP / GitHub)</span>
-</div>
+                    <div className="flex justify-between items-center bg-[#0a0318] p-4 rounded-xl border border-purple-700/20">
 
-<button
-onClick={() => setShowProjectInput(!showProjectInput)}
-className="px-4 py-1 text-xs rounded-md bg-gradient-to-r from-purple-500 to-cyan-400 hover:opacity-90 transition"
->
-Submit
-</button>
+                      <div className="flex items-center gap-3">
+                        <Book size={16} className="text-purple-400" />
+                        <span className="font-medium">Final MCQ Test</span>
+                      </div>
 
-</div>
+                      <Link href={`/courses/${course.id}/mcq`}>
 
-{showProjectInput && (
+                        <button className="px-4 py-1 text-xs rounded-md bg-gradient-to-r from-purple-500 to-cyan-400 hover:opacity-90 transition">
+                          Start Test
+                        </button>
 
-<div className="mt-4 space-y-4">
+                      </Link>
 
-<input
-type="file"
-accept=".zip"
-onChange={(e)=>setProjectFile(e.target.files?.[0] || null)}
-className="w-full text-sm bg-[#1c1038] border border-purple-700/30 rounded-lg p-3
+                    </div>
+
+
+
+                    {/* PROJECT SUBMISSION */}
+
+                    <div className="bg-[#0a0318] p-4 rounded-xl border border-purple-700/20">
+
+                      <div className="flex justify-between items-center">
+
+                        <div className="flex items-center gap-3">
+                          <Code2 size={16} className="text-purple-400" />
+                          <span className="font-medium">Submit Product (ZIP / GitHub)</span>
+                        </div>
+
+                        <button
+                          onClick={() => setShowProjectInput(!showProjectInput)}
+                          className="px-4 py-1 text-xs rounded-md bg-gradient-to-r from-purple-500 to-cyan-400 hover:opacity-90 transition"
+                        >
+                          Submit
+                        </button>
+
+                      </div>
+
+                      {showProjectInput && (
+
+                        <div className="mt-4 space-y-4">
+
+                          <input
+                            type="file"
+                            accept=".zip"
+                            onChange={(e) => setProjectFile(e.target.files?.[0] || null)}
+                            className="w-full text-sm bg-[#1c1038] border border-purple-700/30 rounded-lg p-3
 file:bg-purple-600 file:text-white file:border-0 file:px-3 file:py-1 file:rounded-md
 file:mr-3 hover:file:bg-purple-500"
-/>
+                          />
 
-<input
-type="text"
-placeholder="Paste GitHub Repo Link"
-value={githubLink}
-onChange={(e)=>setGithubLink(e.target.value)}
-className="w-full p-3 rounded-lg bg-[#1c1038] border border-purple-700/30 focus:outline-none focus:ring-2 focus:ring-purple-500"
-/>
+                          <input
+                            type="text"
+                            placeholder="Paste GitHub Repo Link"
+                            value={githubLink}
+                            onChange={(e) => setGithubLink(e.target.value)}
+                            className="w-full p-3 rounded-lg bg-[#1c1038] border border-purple-700/30 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                          />
 
-<button className="w-full py-2 rounded-lg bg-gradient-to-r from-purple-500 to-cyan-400 hover:scale-[1.02] transition font-medium">
-Submit Project
-</button>
+                          <button className="w-full py-2 rounded-lg bg-gradient-to-r from-purple-500 to-cyan-400 hover:scale-[1.02] transition font-medium">
+                            Submit Project
+                          </button>
 
-</div>
+                        </div>
 
-)}
+                      )}
 
-</div>
+                    </div>
 
 
 
-{/* VIDEO UPLOAD */}
+                    {/* VIDEO UPLOAD */}
 
-<div className="bg-[#0a0318] p-4 rounded-xl border border-purple-700/20">
+                    <div className="bg-[#0a0318] p-4 rounded-xl border border-purple-700/20">
 
-<div className="flex justify-between items-center">
+                      <div className="flex justify-between items-center">
 
-<div className="flex items-center gap-3">
-<Video size={16} className="text-cyan-400"/>
-<span className="font-medium">Upload Explanation Video</span>
-</div>
+                        <div className="flex items-center gap-3">
+                          <Video size={16} className="text-cyan-400" />
+                          <span className="font-medium">Upload Explanation Video</span>
+                        </div>
 
-<button
-onClick={()=>setShowVideoInput(!showVideoInput)}
-className="px-4 py-1 text-xs rounded-md bg-gradient-to-r from-purple-500 to-cyan-400 hover:opacity-90 transition"
->
-Upload
-</button>
+                        <button
+                          onClick={() => setShowVideoInput(!showVideoInput)}
+                          className="px-4 py-1 text-xs rounded-md bg-gradient-to-r from-purple-500 to-cyan-400 hover:opacity-90 transition"
+                        >
+                          Upload
+                        </button>
 
-</div>
+                      </div>
 
-{showVideoInput && (
+                      {showVideoInput && (
 
-<div className="mt-4 space-y-4">
+                        <div className="mt-4 space-y-4">
 
-<input
-type="file"
-accept="video/*"
-onChange={(e)=>setVideoFile(e.target.files?.[0] || null)}
-className="w-full text-sm bg-[#1c1038] border border-purple-700/30 rounded-lg p-3
+                          <input
+                            type="file"
+                            accept="video/*"
+                            onChange={(e) => setVideoFile(e.target.files?.[0] || null)}
+                            className="w-full text-sm bg-[#1c1038] border border-purple-700/30 rounded-lg p-3
 file:bg-cyan-500 file:text-black file:border-0 file:px-3 file:py-1 file:rounded-md
 file:mr-3 hover:file:bg-cyan-400"
-/>
+                          />
 
-<button className="w-full py-2 rounded-lg bg-gradient-to-r from-purple-500 to-cyan-400 hover:scale-[1.02] transition font-medium">
-Upload Video
-</button>
+                          <button className="w-full py-2 rounded-lg bg-gradient-to-r from-purple-500 to-cyan-400 hover:scale-[1.02] transition font-medium">
+                            Upload Video
+                          </button>
 
-</div>
+                        </div>
 
-)}
+                      )}
 
-</div>
+                    </div>
 
-</>
+                  </>
 
-) : (
+                ) : (
 
-<>
+                  <>
 
-{/* THEORY */}
+                    {/* THEORY */}
 
-<div className="flex justify-between items-center bg-[#0a0318] p-3 rounded-lg">
+                    <div className="flex justify-between items-center bg-[#0a0318] p-3 rounded-lg">
 
-<div className="flex items-center gap-3">
-<Book size={16} className="text-gray-400"/>
-<span>Theory</span>
-</div>
+                      <div className="flex items-center gap-3">
+                        <Book size={16} className="text-gray-400" />
+                        <span>Theory</span>
+                      </div>
 
-<div className="flex items-center gap-3">
+                      <div className="flex items-center gap-3">
 
-<span className="text-xs bg-green-600/20 text-green-400 px-2 py-1 rounded">
-Completed
-</span>
+                        <span className="text-xs bg-green-600/20 text-green-400 px-2 py-1 rounded">
+                          Completed
+                        </span>
 
-<button className="px-3 py-1 text-xs rounded-md bg-[#1c1038] hover:bg-purple-600/40">
-Review
-</button>
+                        <button className="px-3 py-1 text-xs rounded-md bg-[#1c1038] hover:bg-purple-600/40">
+                          Review
+                        </button>
 
-</div>
+                      </div>
 
-</div>
-
-
-{/* ACTIVITY */}
-
-<div className="flex justify-between items-center bg-[#0a0318] p-3 rounded-lg">
-
-<div className="flex items-center gap-3">
-<Code2 size={16} className="text-gray-400"/>
-<span>Activity</span>
-</div>
-
-<div className="flex items-center gap-3">
-
-<span className="text-xs bg-green-600/20 text-green-400 px-2 py-1 rounded">
-Completed
-</span>
-
-<Link href={`/courses/${course.id}/module/${module.id}/activity`}>
-
-<button className="px-3 py-1 text-xs rounded-md bg-[#1c1038] hover:bg-purple-600/40">
-Review
-</button>
-
-</Link>
-
-</div>
-
-</div>
+                    </div>
 
 
-{/* VIDEO */}
+                    {/* ACTIVITY */}
 
-<div className="flex justify-between items-center bg-[#0a0318] p-3 rounded-lg">
+                    <div className="flex justify-between items-center bg-[#0a0318] p-3 rounded-lg">
 
-<div className="flex items-center gap-3">
-<Video size={16} className="text-gray-400"/>
-<span>Explanation Video</span>
-</div>
+                      <div className="flex items-center gap-3">
+                        <Code2 size={16} className="text-gray-400" />
+                        <span>Activity</span>
+                      </div>
 
-<div className="flex items-center gap-3">
+                      <div className="flex items-center gap-3">
 
-<span className="text-xs bg-cyan-600/20 text-cyan-400 px-2 py-1 rounded">
-In Progress
-</span>
+                        <span className="text-xs bg-green-600/20 text-green-400 px-2 py-1 rounded">
+                          Completed
+                        </span>
 
-<Link href={`/courses/${course.id}/module/${module.id}/stage/3`}>
+                        <Link href={`/courses/${course.id}/module/${module.id}/activity`}>
 
-<button className="px-4 py-1 text-xs rounded-md bg-gradient-to-r from-purple-500 to-cyan-400">
-Continue
-</button>
+                          <button className="px-3 py-1 text-xs rounded-md bg-[#1c1038] hover:bg-purple-600/40">
+                            Review
+                          </button>
 
-</Link>
+                        </Link>
 
-</div>
+                      </div>
 
-</div>
+                    </div>
 
-</>
 
-)}
+                    {/* VIDEO */}
 
-</div>
+                    <div className="flex justify-between items-center bg-[#0a0318] p-3 rounded-lg">
 
-)}
+                      <div className="flex items-center gap-3">
+                        <Video size={16} className="text-gray-400" />
+                        <span>Explanation Video</span>
+                      </div>
+
+                      <div className="flex items-center gap-3">
+
+                        <span className="text-xs bg-cyan-600/20 text-cyan-400 px-2 py-1 rounded">
+                          In Progress
+                        </span>
+
+                        <Link href={`/courses/${course.id}/module/${module.id}/stage/3`}>
+
+                          <button className="px-4 py-1 text-xs rounded-md bg-gradient-to-r from-purple-500 to-cyan-400">
+                            Continue
+                          </button>
+
+                        </Link>
+
+                      </div>
+
+                    </div>
+
+                  </>
+
+                )}
+
+              </div>
+
+            )}
 
           </div>
 

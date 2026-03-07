@@ -23,7 +23,8 @@ export default function RootLayout({
   const hideSidebar =
     pathname === "/" ||
     pathname === "/signup" ||
-    pathname === "/signin"
+    pathname === "/signin" ||
+      pathname === "/profile-setup"
 
   return (
 
