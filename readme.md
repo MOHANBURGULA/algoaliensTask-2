@@ -69,7 +69,7 @@ React – Component architecture
 
 
 
-DAY 3 
+DAY 3    SATURDAY
 
 
 ADDED THE PROFILE AND MY COURSES SECTION IN YHE SIDE BAR,
