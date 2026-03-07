@@ -22,6 +22,13 @@ export default function CoursePage() {
 
   const [openModule, setOpenModule] = useState<string | null>(null)
 
+  const [showProjectInput, setShowProjectInput] = useState(false)
+  const [showVideoInput, setShowVideoInput] = useState(false)
+
+  const [projectFile, setProjectFile] = useState<File | null>(null)
+  const [githubLink, setGithubLink] = useState("")
+  const [videoFile, setVideoFile] = useState<File | null>(null)
+
   if (!course) return <div>Course not found</div>
 
   return (
@@ -45,8 +52,6 @@ export default function CoursePage() {
           Master core data structures and algorithm patterns
         </p>
 
-        {/* PROGRESS */}
-
         <div className="mt-4 flex items-center gap-4">
 
           <div className="w-60 h-2 bg-[#1a0b33] rounded-full">
@@ -65,7 +70,6 @@ export default function CoursePage() {
         </div>
 
       </div>
-
 
 
       {/* MODULES */}
@@ -107,115 +111,235 @@ export default function CoursePage() {
               </div>
 
               {openModule === module.id
-                ?
-                <ChevronUp size={18} className="text-gray-400" />
-                :
-                <ChevronDown size={18} className="text-gray-400" />
+                ? <ChevronUp size={18} className="text-gray-400" />
+                : <ChevronDown size={18} className="text-gray-400" />
               }
 
             </div>
 
 
+{/* MODULE CONTENT */}
 
-            {/* MODULE CONTENT */}
+{openModule === module.id && (
 
-            {openModule === module.id && (
-
-              <div className="space-y-3 mt-5">
-
-
-                {/* THEORY */}
-
-                <div className="flex justify-between items-center bg-[#0a0318] p-3 rounded-lg">
-
-                  <div className="flex items-center gap-3">
-
-                    <Book size={16} className="text-gray-400" />
-
-                    <span>Theory</span>
-
-                  </div>
-
-                  <div className="flex items-center gap-3">
-
-                    <span className="text-xs bg-green-600/20 text-green-400 px-2 py-1 rounded">
-                      Completed
-                    </span>
-
-                    <button className="px-3 py-1 text-xs rounded-md bg-[#1c1038] hover:bg-purple-600/40">
-                      Review
-                    </button>
-
-                  </div>
-
-                </div>
+<div className="space-y-4 mt-5">
 
 
-                {/* ACTIVITY */}
+{/* FINAL MODULE */}
 
-                <div className="flex justify-between items-center bg-[#0a0318] p-3 rounded-lg">
+{module.id === "6" ? (
 
-                  <div className="flex items-center gap-3">
+<>
 
-                    <Code2 size={16} className="text-gray-400" />
+{/* MCQ TEST */}
 
-                    <span>Activity</span>
+<div className="flex justify-between items-center bg-[#0a0318] p-4 rounded-xl border border-purple-700/20">
 
-                  </div>
+<div className="flex items-center gap-3">
+<Book size={16} className="text-purple-400"/>
+<span className="font-medium">Final MCQ Test</span>
+</div>
 
-                  <div className="flex items-center gap-3">
+<Link href={`/courses/${course.id}/mcq`}>
 
-                    <span className="text-xs bg-green-600/20 text-green-400 px-2 py-1 rounded">
-                      Completed
-                    </span>
+<button className="px-4 py-1 text-xs rounded-md bg-gradient-to-r from-purple-500 to-cyan-400 hover:opacity-90 transition">
+Start Test
+</button>
 
-                    <Link href={`/courses/${course.id}/module/${module.id}/activity`}>
+</Link>
 
-                      <button className="px-3 py-1 text-xs rounded-md bg-[#1c1038] hover:bg-purple-600/40">
-                        Review
-                      </button>
-
-                    </Link>
-
-                  </div>
-
-                </div>
+</div>
 
 
-                {/* VIDEO */}
 
-                <div className="flex justify-between items-center bg-[#0a0318] p-3 rounded-lg">
+{/* PROJECT SUBMISSION */}
 
-                  <div className="flex items-center gap-3">
+<div className="bg-[#0a0318] p-4 rounded-xl border border-purple-700/20">
 
-                    <Video size={16} className="text-gray-400" />
+<div className="flex justify-between items-center">
 
-                    <span>Explanation Video</span>
+<div className="flex items-center gap-3">
+<Code2 size={16} className="text-purple-400"/>
+<span className="font-medium">Submit Project (ZIP / GitHub)</span>
+</div>
 
-                  </div>
+<button
+onClick={() => setShowProjectInput(!showProjectInput)}
+className="px-4 py-1 text-xs rounded-md bg-gradient-to-r from-purple-500 to-cyan-400 hover:opacity-90 transition"
+>
+Submit
+</button>
 
-                  <div className="flex items-center gap-3">
+</div>
 
-                    <span className="text-xs bg-cyan-600/20 text-cyan-400 px-2 py-1 rounded">
-                      In Progress
-                    </span>
+{showProjectInput && (
 
-                    <Link href={`/courses/${course.id}/module/${module.id}/stage/3`}>
+<div className="mt-4 space-y-4">
 
-                      <button className="px-4 py-1 text-xs rounded-md bg-gradient-to-r from-purple-500 to-cyan-400">
-                        Continue
-                      </button>
+<input
+type="file"
+accept=".zip"
+onChange={(e)=>setProjectFile(e.target.files?.[0] || null)}
+className="w-full text-sm bg-[#1c1038] border border-purple-700/30 rounded-lg p-3
+file:bg-purple-600 file:text-white file:border-0 file:px-3 file:py-1 file:rounded-md
+file:mr-3 hover:file:bg-purple-500"
+/>
 
-                    </Link>
+<input
+type="text"
+placeholder="Paste GitHub Repo Link"
+value={githubLink}
+onChange={(e)=>setGithubLink(e.target.value)}
+className="w-full p-3 rounded-lg bg-[#1c1038] border border-purple-700/30 focus:outline-none focus:ring-2 focus:ring-purple-500"
+/>
 
-                  </div>
+<button className="w-full py-2 rounded-lg bg-gradient-to-r from-purple-500 to-cyan-400 hover:scale-[1.02] transition font-medium">
+Submit Project
+</button>
 
-                </div>
+</div>
+
+)}
+
+</div>
 
 
-              </div>
 
-            )}
+{/* VIDEO UPLOAD */}
+
+<div className="bg-[#0a0318] p-4 rounded-xl border border-purple-700/20">
+
+<div className="flex justify-between items-center">
+
+<div className="flex items-center gap-3">
+<Video size={16} className="text-cyan-400"/>
+<span className="font-medium">Upload Explanation Video</span>
+</div>
+
+<button
+onClick={()=>setShowVideoInput(!showVideoInput)}
+className="px-4 py-1 text-xs rounded-md bg-gradient-to-r from-purple-500 to-cyan-400 hover:opacity-90 transition"
+>
+Upload
+</button>
+
+</div>
+
+{showVideoInput && (
+
+<div className="mt-4 space-y-4">
+
+<input
+type="file"
+accept="video/*"
+onChange={(e)=>setVideoFile(e.target.files?.[0] || null)}
+className="w-full text-sm bg-[#1c1038] border border-purple-700/30 rounded-lg p-3
+file:bg-cyan-500 file:text-black file:border-0 file:px-3 file:py-1 file:rounded-md
+file:mr-3 hover:file:bg-cyan-400"
+/>
+
+<button className="w-full py-2 rounded-lg bg-gradient-to-r from-purple-500 to-cyan-400 hover:scale-[1.02] transition font-medium">
+Upload Video
+</button>
+
+</div>
+
+)}
+
+</div>
+
+</>
+
+) : (
+
+<>
+
+{/* THEORY */}
+
+<div className="flex justify-between items-center bg-[#0a0318] p-3 rounded-lg">
+
+<div className="flex items-center gap-3">
+<Book size={16} className="text-gray-400"/>
+<span>Theory</span>
+</div>
+
+<div className="flex items-center gap-3">
+
+<span className="text-xs bg-green-600/20 text-green-400 px-2 py-1 rounded">
+Completed
+</span>
+
+<button className="px-3 py-1 text-xs rounded-md bg-[#1c1038] hover:bg-purple-600/40">
+Review
+</button>
+
+</div>
+
+</div>
+
+
+{/* ACTIVITY */}
+
+<div className="flex justify-between items-center bg-[#0a0318] p-3 rounded-lg">
+
+<div className="flex items-center gap-3">
+<Code2 size={16} className="text-gray-400"/>
+<span>Activity</span>
+</div>
+
+<div className="flex items-center gap-3">
+
+<span className="text-xs bg-green-600/20 text-green-400 px-2 py-1 rounded">
+Completed
+</span>
+
+<Link href={`/courses/${course.id}/module/${module.id}/activity`}>
+
+<button className="px-3 py-1 text-xs rounded-md bg-[#1c1038] hover:bg-purple-600/40">
+Review
+</button>
+
+</Link>
+
+</div>
+
+</div>
+
+
+{/* VIDEO */}
+
+<div className="flex justify-between items-center bg-[#0a0318] p-3 rounded-lg">
+
+<div className="flex items-center gap-3">
+<Video size={16} className="text-gray-400"/>
+<span>Explanation Video</span>
+</div>
+
+<div className="flex items-center gap-3">
+
+<span className="text-xs bg-cyan-600/20 text-cyan-400 px-2 py-1 rounded">
+In Progress
+</span>
+
+<Link href={`/courses/${course.id}/module/${module.id}/stage/3`}>
+
+<button className="px-4 py-1 text-xs rounded-md bg-gradient-to-r from-purple-500 to-cyan-400">
+Continue
+</button>
+
+</Link>
+
+</div>
+
+</div>
+
+</>
+
+)}
+
+</div>
+
+)}
 
           </div>
 
